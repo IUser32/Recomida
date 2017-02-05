@@ -213,6 +213,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TipoComidasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -284,6 +285,7 @@
       <DependentUpon>Recomida.edmx</DependentUpon>
       <LastGenOutput>Recomida.cs</LastGenOutput>
     </Content>
+    <Content Include="Query\Script.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -343,6 +345,11 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <Content Include="Views\TipoComidas\Create.cshtml" />
+    <Content Include="Views\TipoComidas\Delete.cshtml" />
+    <Content Include="Views\TipoComidas\Details.cshtml" />
+    <Content Include="Views\TipoComidas\Edit.cshtml" />
+    <Content Include="Views\TipoComidas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
