@@ -1,33 +1,41 @@
 ﻿@model IEnumerable<Recomida.WebApp.Models.Context.TipoComida>
-
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Tipos de Comida";
 }
+<section class="content-header">
+    <h2>Tipos de Comida @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn bg-olive" })</h2>
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TipoComidaID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TipoComidaID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TipoComidaID })
-        </td>
-    </tr>
-}
-
-</table>
+</section>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Gestión de Tipos de Comida</h3>
+            </div>
+            <div class="box-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Descripcion)
+                        </th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descripcion)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { id = item.TipoComidaID }) |
+                                @Html.ActionLink("Detalles", "Details", new { id = item.TipoComidaID }) |
+                                @Html.ActionLink("Borrar", "Delete", new { id = item.TipoComidaID })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+          </div>
+    </div>
+</div>

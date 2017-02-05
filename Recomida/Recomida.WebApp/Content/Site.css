@@ -1,1 +1,6 @@
-﻿
+﻿.logo {
+    font-family: 'Lobster', cursive !important;
+}
+.content-header h2 {
+    font-family: 'Lobster', cursive !important;
+}
