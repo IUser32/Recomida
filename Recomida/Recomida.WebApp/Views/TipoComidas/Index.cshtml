@@ -8,7 +8,7 @@
 
 </section>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6 col-md-offset-3">
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Gestión de Tipos de Comida</h3>
@@ -28,9 +28,9 @@
                                 @Html.DisplayFor(modelItem => item.Descripcion)
                             </td>
                             <td>
-                                @Html.ActionLink("Editar", "Edit", new { id = item.TipoComidaID }) |
-                                @Html.ActionLink("Detalles", "Details", new { id = item.TipoComidaID }) |
-                                @Html.ActionLink("Borrar", "Delete", new { id = item.TipoComidaID })
+                                @Html.ActionLink(" | ", "Edit", new { id = item.TipoComidaID }, new { @class = "fa fa-pencil" }) 
+                                @Html.ActionLink(" | ", "Details", new { id = item.TipoComidaID }, new { @class = "fa fa-info" })
+                                @Html.ActionLink(" . ", "Delete", new { id = item.TipoComidaID }, new { @class = "fa fa-trash" })
                             </td>
                         </tr>
                     }
