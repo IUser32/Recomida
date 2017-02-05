@@ -214,6 +214,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TipoComidasController.cs" />
+    <Compile Include="Controllers\TipoRestaurantesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -350,6 +351,11 @@
     <Content Include="Views\TipoComidas\Details.cshtml" />
     <Content Include="Views\TipoComidas\Edit.cshtml" />
     <Content Include="Views\TipoComidas\Index.cshtml" />
+    <Content Include="Views\TipoRestaurantes\Create.cshtml" />
+    <Content Include="Views\TipoRestaurantes\Delete.cshtml" />
+    <Content Include="Views\TipoRestaurantes\Details.cshtml" />
+    <Content Include="Views\TipoRestaurantes\Edit.cshtml" />
+    <Content Include="Views\TipoRestaurantes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
