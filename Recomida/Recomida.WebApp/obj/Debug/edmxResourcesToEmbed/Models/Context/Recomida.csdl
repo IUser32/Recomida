@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RecomidaCtx" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Restaurantes">
+    <Key>
+      <PropertyRef Name="RestauranteID" />
+    </Key>
+    <Property Name="RestauranteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TipoRestauranteID" Type="Int32" Nullable="false" />
+    <Property Name="TipoComidaID" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TipoComida" Relationship="Self.FK__Restauran__TipoC__37A5467C" FromRole="Restaurantes" ToRole="TipoComida" />
+    <NavigationProperty Name="TipoRestaurante" Relationship="Self.FK__Restauran__TipoR__36B12243" FromRole="Restaurantes" ToRole="TipoRestaurante" />
+    <NavigationProperty Name="Ubicacion" Relationship="Self.FK__Ubicacion__Resta__398D8EEE" FromRole="Restaurantes" ToRole="Ubicacion" />
+    <NavigationProperty Name="Valoracion" Relationship="Self.FK__Valoracio__Resta__3F466844" FromRole="Restaurantes" ToRole="Valoracion" />
+  </EntityType>
+  <EntityType Name="TipoComida">
+    <Key>
+      <PropertyRef Name="TipoComidaID" />
+    </Key>
+    <Property Name="TipoComidaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Restaurantes" Relationship="Self.FK__Restauran__TipoC__37A5467C" FromRole="TipoComida" ToRole="Restaurantes" />
+  </EntityType>
+  <EntityType Name="TipoRestaurante">
+    <Key>
+      <PropertyRef Name="TipoRestauranteID" />
+    </Key>
+    <Property Name="TipoRestauranteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Restaurantes" Relationship="Self.FK__Restauran__TipoR__36B12243" FromRole="TipoRestaurante" ToRole="Restaurantes" />
+  </EntityType>
+  <EntityType Name="Valoracion">
+    <Key>
+      <PropertyRef Name="ValoracionID" />
+    </Key>
+    <Property Name="ValoracionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="RestauranteID" Type="Int32" Nullable="false" />
+    <Property Name="Puntuaje" Type="Int32" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Restaurantes" Relationship="Self.FK__Valoracio__Resta__3F466844" FromRole="Valoracion" ToRole="Restaurantes" />
+    <NavigationProperty Name="UserProfile" Relationship="Self.FK__Valoracio__UserI__3E52440B" FromRole="Valoracion" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="56" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Valoracion" Relationship="Self.FK__Valoracio__UserI__3E52440B" FromRole="UserProfile" ToRole="Valoracion" />
+    <NavigationProperty Name="Persona" Relationship="Self.FK__Persona__UserId__3B75D760" FromRole="UserProfile" ToRole="Persona" />
+    <NavigationProperty Name="webpages_Roles" Relationship="Self.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ConfirmationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="IsConfirmed" Type="Boolean" />
+    <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordSalt" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderUserId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="UserProfile" Relationship="Self.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="Apellido" />
+      <PropertyRef Name="FechaNacimiento" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="UserProfile" Relationship="Self.FK__Persona__UserId__3B75D760" FromRole="Persona" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="Ubicacion">
+    <Key>
+      <PropertyRef Name="RestauranteID" />
+      <PropertyRef Name="Pais" />
+      <PropertyRef Name="Ciudad" />
+      <PropertyRef Name="Direccion" />
+    </Key>
+    <Property Name="RestauranteID" Type="Int32" Nullable="false" />
+    <Property Name="Pais" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Ciudad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Restaurantes" Relationship="Self.FK__Ubicacion__Resta__398D8EEE" FromRole="Ubicacion" ToRole="Restaurantes" />
+  </EntityType>
+  <Association Name="FK__Restauran__TipoC__37A5467C">
+    <End Role="TipoComida" Type="Self.TipoComida" Multiplicity="1" />
+    <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoComida">
+        <PropertyRef Name="TipoComidaID" />
+      </Principal>
+      <Dependent Role="Restaurantes">
+        <PropertyRef Name="TipoComidaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Restauran__TipoR__36B12243">
+    <End Role="TipoRestaurante" Type="Self.TipoRestaurante" Multiplicity="1" />
+    <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoRestaurante">
+        <PropertyRef Name="TipoRestauranteID" />
+      </Principal>
+      <Dependent Role="Restaurantes">
+        <PropertyRef Name="TipoRestauranteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ubicacion__Resta__398D8EEE">
+    <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="1" />
+    <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurantes">
+        <PropertyRef Name="RestauranteID" />
+      </Principal>
+      <Dependent Role="Ubicacion">
+        <PropertyRef Name="RestauranteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Valoracio__Resta__3F466844">
+    <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="1" />
+    <End Role="Valoracion" Type="Self.Valoracion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurantes">
+        <PropertyRef Name="RestauranteID" />
+      </Principal>
+      <Dependent Role="Valoracion">
+        <PropertyRef Name="RestauranteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Valoracio__UserI__3E52440B">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+    <End Role="Valoracion" Type="Self.Valoracion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Valoracion">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Persona__UserId__3B75D760">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+    <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Persona">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="webpages_UsersInRoles">
+    <End Role="webpages_Roles" Type="Self.webpages_Roles" Multiplicity="*" />
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="RecomidaModel" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Restaurantes" EntityType="Self.Restaurantes" />
+    <EntitySet Name="TipoComida" EntityType="Self.TipoComida" />
+    <EntitySet Name="TipoRestaurante" EntityType="Self.TipoRestaurante" />
+    <EntitySet Name="Valoracion" EntityType="Self.Valoracion" />
+    <EntitySet Name="UserProfile" EntityType="Self.UserProfile" />
+    <EntitySet Name="webpages_Membership" EntityType="Self.webpages_Membership" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="Self.webpages_OAuthMembership" />
+    <EntitySet Name="webpages_Roles" EntityType="Self.webpages_Roles" />
+    <EntitySet Name="Persona" EntityType="Self.Persona" />
+    <EntitySet Name="Ubicacion" EntityType="Self.Ubicacion" />
+    <AssociationSet Name="FK__Restauran__TipoC__37A5467C" Association="Self.FK__Restauran__TipoC__37A5467C">
+      <End Role="TipoComida" EntitySet="TipoComida" />
+      <End Role="Restaurantes" EntitySet="Restaurantes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Restauran__TipoR__36B12243" Association="Self.FK__Restauran__TipoR__36B12243">
+      <End Role="TipoRestaurante" EntitySet="TipoRestaurante" />
+      <End Role="Restaurantes" EntitySet="Restaurantes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ubicacion__Resta__398D8EEE" Association="Self.FK__Ubicacion__Resta__398D8EEE">
+      <End Role="Restaurantes" EntitySet="Restaurantes" />
+      <End Role="Ubicacion" EntitySet="Ubicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Valoracio__Resta__3F466844" Association="Self.FK__Valoracio__Resta__3F466844">
+      <End Role="Restaurantes" EntitySet="Restaurantes" />
+      <End Role="Valoracion" EntitySet="Valoracion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Valoracio__UserI__3E52440B" Association="Self.FK__Valoracio__UserI__3E52440B">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="Valoracion" EntitySet="Valoracion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Persona__UserId__3B75D760" Association="Self.FK__Persona__UserId__3B75D760">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="Persona" EntitySet="Persona" />
+    </AssociationSet>
+    <AssociationSet Name="webpages_UsersInRoles" Association="Self.webpages_UsersInRoles">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="UserProfile" EntitySet="UserProfile" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
