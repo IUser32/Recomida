@@ -9,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{FF82C224-C8ED-41BC-8452-F2969F3A2FFC}</ProjectGuid>
+    <ProjectGuid>{44D121F3-FD7C-47A2-8308-CA0EF70787A4}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -78,9 +78,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebHelpers.3.2.0\lib\net45\Microsoft.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -138,6 +144,14 @@
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.3\lib\net45\WebMatrix.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.3\lib\net45\WebMatrix.WebData.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +217,51 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Context\Persona.cs">
+      <DependentUpon>Recomida.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Context\Recomida.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Recomida.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Context\Recomida.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Recomida.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Context\Recomida.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Recomida.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Context\Restaurantes.cs">
+      <DependentUpon>Recomida.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Context\TipoComida.cs">
+      <DependentUpon>Recomida.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Context\TipoRestaurante.cs">
+      <DependentUpon>Recomida.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Context\Ubicacion.cs">
+      <DependentUpon>Recomida.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Context\UserProfile.cs">
+      <DependentUpon>Recomida.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Context\Valoracion.cs">
+      <DependentUpon>Recomida.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Context\webpages_Membership.cs">
+      <DependentUpon>Recomida.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Context\webpages_OAuthMembership.cs">
+      <DependentUpon>Recomida.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Context\webpages_Roles.cs">
+      <DependentUpon>Recomida.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -215,10 +274,27 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Context\Recomida.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Recomida.edmx</DependentUpon>
+      <LastGenOutput>Recomida.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Context\Recomida.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Recomida.edmx</DependentUpon>
+      <LastGenOutput>Recomida.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="Models\Context\Recomida.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Recomida.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Context\Recomida.edmx.diagram">
+      <DependentUpon>Recomida.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -282,6 +358,9 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -298,7 +377,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>54560</DevelopmentServerPort>
+          <DevelopmentServerPort>55167</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:54560/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
