@@ -365,6 +365,7 @@
     <Content Include="Views\TipoRestaurantes\Details.cshtml" />
     <Content Include="Views\TipoRestaurantes\Edit.cshtml" />
     <Content Include="Views\TipoRestaurantes\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutLoginScreen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
