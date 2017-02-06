@@ -9,3 +9,4 @@ GO
 
 ALTER TABLE Perfil.Ubicacion
 ADD Longitud GEOGRAPHY NOT NULL
+

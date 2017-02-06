@@ -18,6 +18,8 @@ namespace Recomida.WebApp.Models.Context
         public string Pais { get; set; }
         public string Ciudad { get; set; }
         public string Direccion { get; set; }
+        public System.Data.Entity.Spatial.DbGeography Latitud { get; set; }
+        public System.Data.Entity.Spatial.DbGeography Longitud { get; set; }
     
         public virtual Restaurantes Restaurantes { get; set; }
     }

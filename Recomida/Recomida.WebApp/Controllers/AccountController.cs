@@ -148,7 +148,7 @@ namespace Recomida.WebApp.Controllers
                     WebSecurity.Login(model.Email, model.Password);
                     return RedirectToAction("Index", "Home");
                 }
-                catch (MembershipCreateUserException e)
+                catch (MembershipCreateUserException)
                 {
                 }
             }
