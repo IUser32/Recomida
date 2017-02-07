@@ -255,6 +255,6 @@ C:\Users\Samil\Documents\Visual Studio 2015\Projects\Recomida\Recomida\Recomida.
 C:\Users\Samil\Documents\Visual Studio 2015\Projects\Recomida\Recomida\Recomida.WebApp\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Samil\Documents\Visual Studio 2015\Projects\Recomida\Recomida\Recomida.WebApp\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Samil\Documents\Visual Studio 2015\Projects\Recomida\Recomida\Recomida.WebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Samil\Documents\Visual Studio 2015\Projects\Recomida\Recomida\Recomida.WebApp\obj\Debug\Recomida.WebApp.csprojResolveAssemblyReference.cache
 C:\Users\Samil\Documents\Visual Studio 2015\Projects\Recomida\Recomida\Recomida.WebApp\obj\Debug\Recomida.WebApp.dll
 C:\Users\Samil\Documents\Visual Studio 2015\Projects\Recomida\Recomida\Recomida.WebApp\obj\Debug\Recomida.WebApp.pdb
+C:\Users\Samil\Documents\Visual Studio 2015\Projects\Recomida\Recomida\Recomida.WebApp\obj\Debug\Recomida.WebApp.csprojResolveAssemblyReference.cache

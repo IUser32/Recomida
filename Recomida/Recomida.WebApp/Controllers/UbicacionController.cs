@@ -48,7 +48,7 @@ namespace Recomida.WebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RestauranteID,Pais,Ciudad,Direccion,Latitud,Longitud")] Ubicacion ubicacion)
+        public ActionResult Create([Bind(Include = "ID,RestauranteID,Pais,Ciudad,Direccion,Longitud,Latitud")] Ubicacion ubicacion)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +60,14 @@ namespace Recomida.WebApp.Controllers
             ViewBag.RestauranteID = new SelectList(db.Restaurantes, "RestauranteID", "Nombre", ubicacion.RestauranteID);
             return View(ubicacion);
         }
+
+
+        public ActionResult SynGetUbicacion()
+        {
+            return View(db.Ubicacion.ToList());
+        }
+
+
 
         // GET: Ubicacion/Edit/5
         public ActionResult Edit(int? id)
@@ -82,7 +90,7 @@ namespace Recomida.WebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RestauranteID,Pais,Ciudad,Direccion,Latitud,Longitud")] Ubicacion ubicacion)
+        public ActionResult Edit([Bind(Include = "ID,RestauranteID,Pais,Ciudad,Direccion,Longitud,Latitud")] Ubicacion ubicacion)
         {
             if (ModelState.IsValid)
             {

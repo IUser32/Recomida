@@ -375,6 +375,7 @@
     <Content Include="Views\Ubicacion\Details.cshtml" />
     <Content Include="Views\Ubicacion\Edit.cshtml" />
     <Content Include="Views\Ubicacion\Index.cshtml" />
+    <Content Include="Views\Ubicacion\SynGetUbicacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
