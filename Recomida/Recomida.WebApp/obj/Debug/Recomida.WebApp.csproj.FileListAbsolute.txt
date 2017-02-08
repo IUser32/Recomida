@@ -171,3 +171,4 @@ C:\Users\lfortuna\Source\Repos\Recomida\Recomida\Recomida.WebApp\bin\Microsoft.O
 C:\Users\lfortuna\Source\Repos\Recomida\Recomida\Recomida.WebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\lfortuna\Source\Repos\Recomida\Recomida\Recomida.WebApp\obj\Debug\Recomida.WebApp.dll
 C:\Users\lfortuna\Source\Repos\Recomida\Recomida\Recomida.WebApp\obj\Debug\Recomida.WebApp.pdb
+C:\Users\lfortuna\Source\Repos\Recomida\Recomida\Recomida.WebApp\obj\Debug\Recomida.WebApp.csprojResolveAssemblyReference.cache

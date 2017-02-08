@@ -213,8 +213,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RestaurantesController.cs" />
     <Compile Include="Controllers\TipoComidasController.cs" />
     <Compile Include="Controllers\TipoRestaurantesController.cs" />
+    <Compile Include="Controllers\UbicacionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -292,6 +294,7 @@
       <DependentUpon>Recomida.edmx</DependentUpon>
       <LastGenOutput>Recomida.cs</LastGenOutput>
     </Content>
+    <Content Include="Query\long lat.sql" />
     <Content Include="Query\Script.sql" />
     <Content Include="Scripts\app.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -366,6 +369,16 @@
     <Content Include="Views\TipoRestaurantes\Edit.cshtml" />
     <Content Include="Views\TipoRestaurantes\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutLoginScreen.cshtml" />
+    <Content Include="Views\Ubicacion\Create.cshtml" />
+    <Content Include="Views\Ubicacion\Delete.cshtml" />
+    <Content Include="Views\Ubicacion\Details.cshtml" />
+    <Content Include="Views\Ubicacion\Edit.cshtml" />
+    <Content Include="Views\Ubicacion\Index.cshtml" />
+    <Content Include="Views\Restaurantes\Create.cshtml" />
+    <Content Include="Views\Restaurantes\Delete.cshtml" />
+    <Content Include="Views\Restaurantes\Details.cshtml" />
+    <Content Include="Views\Restaurantes\Edit.cshtml" />
+    <Content Include="Views\Restaurantes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
