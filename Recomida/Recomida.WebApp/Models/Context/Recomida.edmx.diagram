@@ -8,19 +8,19 @@
         <EntityTypeShape EntityType="RecomidaCtx.Restaurantes" Width="1.5" PointX="3" PointY="3.125" />
         <EntityTypeShape EntityType="RecomidaCtx.TipoComida" Width="1.5" PointX="0.75" PointY="3.75" />
         <EntityTypeShape EntityType="RecomidaCtx.TipoRestaurante" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="RecomidaCtx.Valoracion" Width="1.5" PointX="5.25" PointY="3.375" />
-        <EntityTypeShape EntityType="RecomidaCtx.UserProfile" Width="1.5" PointX="3" PointY="8.5" />
-        <EntityTypeShape EntityType="RecomidaCtx.webpages_Membership" Width="1.5" PointX="7.75" PointY="1.5" />
-        <EntityTypeShape EntityType="RecomidaCtx.webpages_OAuthMembership" Width="1.5" PointX="7.75" PointY="5.5" />
-        <EntityTypeShape EntityType="RecomidaCtx.webpages_Roles" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="RecomidaCtx.Valoracion" Width="1.5" PointX="5.25" PointY="2.375" />
+        <EntityTypeShape EntityType="RecomidaCtx.UserProfile" Width="1.5" PointX="3" PointY="7.5" />
+        <EntityTypeShape EntityType="RecomidaCtx.webpages_Membership" Width="1.5" PointX="7.75" PointY="1.375" />
+        <EntityTypeShape EntityType="RecomidaCtx.webpages_OAuthMembership" Width="1.5" PointX="7.75" PointY="5.375" />
+        <EntityTypeShape EntityType="RecomidaCtx.webpages_Roles" Width="1.5" PointX="0.75" PointY="7.75" />
         <EntityTypeShape EntityType="RecomidaCtx.Persona" Width="1.5" PointX="5.25" PointY="10.5" />
-        <EntityTypeShape EntityType="RecomidaCtx.Ubicacion" Width="1.5" PointX="5.25" PointY="6.5" />
-        <AssociationConnector Association="RecomidaCtx.FK__Restauran__TipoC__37A5467C" />
-        <AssociationConnector Association="RecomidaCtx.FK__Restauran__TipoR__36B12243" />
-        <AssociationConnector Association="RecomidaCtx.FK__Ubicacion__Resta__398D8EEE" />
-        <AssociationConnector Association="RecomidaCtx.FK__Valoracio__Resta__3F466844" />
-        <AssociationConnector Association="RecomidaCtx.FK__Valoracio__UserI__3E52440B" />
-        <AssociationConnector Association="RecomidaCtx.FK__Persona__UserId__3B75D760" />
+        <EntityTypeShape EntityType="RecomidaCtx.Ubicacion" Width="1.5" PointX="5.25" PointY="6.375" />
+        <AssociationConnector Association="RecomidaCtx.FK__Restauran__TipoC__25869641" />
+        <AssociationConnector Association="RecomidaCtx.FK__Restauran__TipoR__267ABA7A" />
+        <AssociationConnector Association="RecomidaCtx.FK__Ubicacion__Resta__2C3393D0" />
+        <AssociationConnector Association="RecomidaCtx.FK__Valoracio__Resta__276EDEB3" />
+        <AssociationConnector Association="RecomidaCtx.FK__Valoracio__UserI__286302EC" />
+        <AssociationConnector Association="RecomidaCtx.FK__Persona__UserId__2B3F6F97" />
         <AssociationConnector Association="RecomidaCtx.webpages_UsersInRoles" />
       </Diagram>
     </edmx:Diagrams>

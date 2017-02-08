@@ -48,7 +48,7 @@ namespace Recomida.WebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RestauranteID,Pais,Ciudad,Direccion,Latitud,Longitud")] Ubicacion ubicacion)
+        public ActionResult Create([Bind(Include = "UbicacionID,RestauranteID,Pais,Ciudad,Direccion,Longitud,Latitud")] Ubicacion ubicacion)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace Recomida.WebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RestauranteID,Pais,Ciudad,Direccion,Latitud,Longitud")] Ubicacion ubicacion)
+        public ActionResult Edit([Bind(Include = "UbicacionID,RestauranteID,Pais,Ciudad,Direccion,Longitud,Latitud")] Ubicacion ubicacion)
         {
             if (ModelState.IsValid)
             {

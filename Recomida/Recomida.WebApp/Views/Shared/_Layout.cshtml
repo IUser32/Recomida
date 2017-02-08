@@ -6,6 +6,11 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmtS3nl4VtjVPTNFid06RwTSns9SxZDNc&callback=initMap"></script>
+
+
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
@@ -71,6 +76,7 @@
                         <ul class="treeview-menu">
                             <li class="active"> @Html.ActionLink("Gestionar Restaurante", "Index", "Restaurantes")</li>
                             <li class="active"> @Html.ActionLink("Tipos", "Index", "TipoRestaurantes")</li>
+                            <li class="active"> @Html.ActionLink("Ubicacion", "Index", "Ubicacion")</li>
 
                         </ul>
                     </li>
