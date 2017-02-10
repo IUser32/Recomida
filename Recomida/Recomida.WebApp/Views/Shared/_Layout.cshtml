@@ -3,9 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
@@ -45,38 +48,12 @@
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
                 <!-- Sidebar toggle button-->
+
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                     <span class="sr-only">Toggle navigation</span>
                 </a>
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
+                @Html.Partial("_LoginPartial")
 
-                        <!-- User Account: style can be found in dropdown.less -->
-                        <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span>Admin</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="user-header">
-                                    <p>
-                                        Admin
-                                    </p>
-                                </li>
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-
-                                    <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- Control Sidebar Toggle Button -->
-                        <li>
-                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                        </li>
-                    </ul>
-                </div>
             </nav>
         </header>
         <!-- Left side column. contains the logo and sidebar -->
@@ -97,6 +74,7 @@
                         <ul class="treeview-menu">
                             <li class="active"> @Html.ActionLink("Gestionar Restaurante", "Index", "Restaurantes")</li>
                             <li class="active"> @Html.ActionLink("Tipos", "Index", "TipoRestaurantes")</li>
+                            <li class="active"> @Html.ActionLink("Ubicacion", "Index", "Ubicacion")</li>
 
                         </ul>
                     </li>
@@ -118,23 +96,21 @@
             <!-- /.sidebar -->
         </aside>
         <!-- Content Wrapper. Contains page content -->
+        <script src="~/Scripts/jquery-2.2.3.min.js"></script>
+        <script src="~/Scripts/jquery-ui.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/app.min.js"></script>
+        @RenderSection("scripts", required: false)
         <div class="content-wrapper">
             <section class="content">
                 @RenderBody()
             </section>
             <hr />
-
         </div>
         <footer class="main-footer">
-
             <p>&copy; @DateTime.Now.Year - Adribel Gonzalez  - Luis Fortuna  - Samil Jimenez </p>
         </footer>
         </div>
-        <script src="~/Scripts/jquery-2.2.3.min.js"></script>
-        <script src="~/Scripts/bootstrap.min.js"></script>
-        <script src="~/Scripts/jquery-ui.min.js"></script>
-        <script src="~/Scripts/app.min.js"></script>
-        @RenderSection("scripts", required: false)
    
 </body>
 </html>

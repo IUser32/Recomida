@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RecomidaCtx.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RecomidaCtx.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Restaurantes">
           <Key>
             <PropertyRef Name="RestauranteID" />
@@ -86,37 +86,29 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Recomida.Perfil.Persona' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Persona">
           <Key>
             <PropertyRef Name="UserId" />
-            <PropertyRef Name="Nombre" />
-            <PropertyRef Name="Apellido" />
-            <PropertyRef Name="FechaNacimiento" />
           </Key>
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FechaNacimiento" Type="datetime" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Recomida.Perfil.Ubicacion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Ubicacion">
           <Key>
             <PropertyRef Name="RestauranteID" />
-            <PropertyRef Name="Pais" />
-            <PropertyRef Name="Ciudad" />
-            <PropertyRef Name="Direccion" />
           </Key>
           <Property Name="RestauranteID" Type="int" Nullable="false" />
           <Property Name="Pais" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Ciudad" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Direccion" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Latitud" Type="float" Nullable="false" />
+          <Property Name="Longitud" Type="float" Nullable="false" />
         </EntityType>
         <Association Name="FK__Persona__UserId__3B75D760">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
-          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
               <PropertyRef Name="UserId" />
@@ -152,7 +144,7 @@ warning 6002: The table/view 'Recomida.Perfil.Ubicacion' does not have a primary
         </Association>
         <Association Name="FK__Ubicacion__Resta__398D8EEE">
           <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="1" />
-          <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="*" />
+          <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Restaurantes">
               <PropertyRef Name="RestauranteID" />
@@ -220,22 +212,8 @@ warning 6002: The table/view 'Recomida.Perfil.Ubicacion' does not have a primary
           <EntitySet Name="webpages_OAuthMembership" EntityType="Self.webpages_OAuthMembership" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="webpages_Roles" EntityType="Self.webpages_Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="webpages_UsersInRoles" EntityType="Self.webpages_UsersInRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Persona" EntityType="Self.Persona" store:Type="Tables" store:Schema="Perfil">
-            <DefiningQuery>SELECT 
-    [Persona].[UserId] AS [UserId], 
-    [Persona].[Nombre] AS [Nombre], 
-    [Persona].[Apellido] AS [Apellido], 
-    [Persona].[FechaNacimiento] AS [FechaNacimiento]
-    FROM [Perfil].[Persona] AS [Persona]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Ubicacion" EntityType="Self.Ubicacion" store:Type="Tables" store:Schema="Perfil">
-            <DefiningQuery>SELECT 
-    [Ubicacion].[RestauranteID] AS [RestauranteID], 
-    [Ubicacion].[Pais] AS [Pais], 
-    [Ubicacion].[Ciudad] AS [Ciudad], 
-    [Ubicacion].[Direccion] AS [Direccion]
-    FROM [Perfil].[Ubicacion] AS [Ubicacion]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="Perfil" store:Type="Tables" />
+          <EntitySet Name="Ubicacion" EntityType="Self.Ubicacion" Schema="Perfil" store:Type="Tables" />
           <AssociationSet Name="FK__Persona__UserId__3B75D760" Association="Self.FK__Persona__UserId__3B75D760">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Persona" EntitySet="Persona" />
@@ -269,11 +247,50 @@ warning 6002: The table/view 'Recomida.Perfil.Ubicacion' does not have a primary
             <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RecomidaCtx" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RecomidaModel" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Restaurantes" EntityType="RecomidaCtx.Restaurantes" />
+          <EntitySet Name="TipoComida" EntityType="RecomidaCtx.TipoComida" />
+          <EntitySet Name="TipoRestaurante" EntityType="RecomidaCtx.TipoRestaurante" />
+          <EntitySet Name="Valoracion" EntityType="RecomidaCtx.Valoracion" />
+          <EntitySet Name="UserProfile" EntityType="RecomidaCtx.UserProfile" />
+          <EntitySet Name="webpages_Membership" EntityType="RecomidaCtx.webpages_Membership" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="RecomidaCtx.webpages_OAuthMembership" />
+          <EntitySet Name="webpages_Roles" EntityType="RecomidaCtx.webpages_Roles" />
+          <EntitySet Name="Persona" EntityType="RecomidaCtx.Persona" />
+          <EntitySet Name="Ubicacion" EntityType="RecomidaCtx.Ubicacion" />
+          <AssociationSet Name="FK__Restauran__TipoC__37A5467C" Association="RecomidaCtx.FK__Restauran__TipoC__37A5467C">
+            <End Role="TipoComida" EntitySet="TipoComida" />
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Restauran__TipoR__36B12243" Association="RecomidaCtx.FK__Restauran__TipoR__36B12243">
+            <End Role="TipoRestaurante" EntitySet="TipoRestaurante" />
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ubicacion__Resta__398D8EEE" Association="RecomidaCtx.FK__Ubicacion__Resta__398D8EEE">
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+            <End Role="Ubicacion" EntitySet="Ubicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Valoracio__Resta__3F466844" Association="RecomidaCtx.FK__Valoracio__Resta__3F466844">
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+            <End Role="Valoracion" EntitySet="Valoracion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Valoracio__UserI__3E52440B" Association="RecomidaCtx.FK__Valoracio__UserI__3E52440B">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Valoracion" EntitySet="Valoracion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__UserId__3B75D760" Association="RecomidaCtx.FK__Persona__UserId__3B75D760">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="webpages_UsersInRoles" Association="RecomidaCtx.webpages_UsersInRoles">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Restaurantes">
           <Key>
             <PropertyRef Name="RestauranteID" />
@@ -281,28 +298,28 @@ warning 6002: The table/view 'Recomida.Perfil.Ubicacion' does not have a primary
           <Property Name="RestauranteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TipoRestauranteID" Type="Int32" Nullable="false" />
           <Property Name="TipoComidaID" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="TipoComida" Relationship="Self.FK__Restauran__TipoC__37A5467C" FromRole="Restaurantes" ToRole="TipoComida" />
-          <NavigationProperty Name="TipoRestaurante" Relationship="Self.FK__Restauran__TipoR__36B12243" FromRole="Restaurantes" ToRole="TipoRestaurante" />
-          <NavigationProperty Name="Ubicacion" Relationship="Self.FK__Ubicacion__Resta__398D8EEE" FromRole="Restaurantes" ToRole="Ubicacion" />
-          <NavigationProperty Name="Valoracion" Relationship="Self.FK__Valoracio__Resta__3F466844" FromRole="Restaurantes" ToRole="Valoracion" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TipoComida" Relationship="RecomidaCtx.FK__Restauran__TipoC__37A5467C" FromRole="Restaurantes" ToRole="TipoComida" />
+          <NavigationProperty Name="TipoRestaurante" Relationship="RecomidaCtx.FK__Restauran__TipoR__36B12243" FromRole="Restaurantes" ToRole="TipoRestaurante" />
+          <NavigationProperty Name="Ubicacion" Relationship="RecomidaCtx.FK__Ubicacion__Resta__398D8EEE" FromRole="Restaurantes" ToRole="Ubicacion" />
+          <NavigationProperty Name="Valoracion" Relationship="RecomidaCtx.FK__Valoracio__Resta__3F466844" FromRole="Restaurantes" ToRole="Valoracion" />
         </EntityType>
         <EntityType Name="TipoComida">
           <Key>
             <PropertyRef Name="TipoComidaID" />
           </Key>
           <Property Name="TipoComidaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Restaurantes" Relationship="Self.FK__Restauran__TipoC__37A5467C" FromRole="TipoComida" ToRole="Restaurantes" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Restaurantes" Relationship="RecomidaCtx.FK__Restauran__TipoC__37A5467C" FromRole="TipoComida" ToRole="Restaurantes" />
         </EntityType>
         <EntityType Name="TipoRestaurante">
           <Key>
             <PropertyRef Name="TipoRestauranteID" />
           </Key>
           <Property Name="TipoRestauranteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Restaurantes" Relationship="Self.FK__Restauran__TipoR__36B12243" FromRole="TipoRestaurante" ToRole="Restaurantes" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Restaurantes" Relationship="RecomidaCtx.FK__Restauran__TipoR__36B12243" FromRole="TipoRestaurante" ToRole="Restaurantes" />
         </EntityType>
         <EntityType Name="Valoracion">
           <Key>
@@ -313,18 +330,18 @@ warning 6002: The table/view 'Recomida.Perfil.Ubicacion' does not have a primary
           <Property Name="RestauranteID" Type="Int32" Nullable="false" />
           <Property Name="Puntuaje" Type="Int32" Nullable="false" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Restaurantes" Relationship="Self.FK__Valoracio__Resta__3F466844" FromRole="Valoracion" ToRole="Restaurantes" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK__Valoracio__UserI__3E52440B" FromRole="Valoracion" ToRole="UserProfile" />
+          <NavigationProperty Name="Restaurantes" Relationship="RecomidaCtx.FK__Valoracio__Resta__3F466844" FromRole="Valoracion" ToRole="Restaurantes" />
+          <NavigationProperty Name="UserProfile" Relationship="RecomidaCtx.FK__Valoracio__UserI__3E52440B" FromRole="Valoracion" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
           <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="56" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Valoracion" Relationship="Self.FK__Valoracio__UserI__3E52440B" FromRole="UserProfile" ToRole="Valoracion" />
-          <NavigationProperty Name="Persona" Relationship="Self.FK__Persona__UserId__3B75D760" FromRole="UserProfile" ToRole="Persona" />
-          <NavigationProperty Name="webpages_Roles" Relationship="Self.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Valoracion" Relationship="RecomidaCtx.FK__Valoracio__UserI__3E52440B" FromRole="UserProfile" ToRole="Valoracion" />
+          <NavigationProperty Name="Persona" Relationship="RecomidaCtx.FK__Persona__UserId__3B75D760" FromRole="UserProfile" ToRole="Persona" />
+          <NavigationProperty Name="webpages_Roles" Relationship="RecomidaCtx.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
         </EntityType>
         <EntityType Name="webpages_Membership">
           <Key>
@@ -336,9 +353,9 @@ warning 6002: The table/view 'Recomida.Perfil.Ubicacion' does not have a primary
           <Property Name="IsConfirmed" Type="Boolean" />
           <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
           <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
-          <Property Name="PasswordSalt" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
         </EntityType>
@@ -347,8 +364,8 @@ warning 6002: The table/view 'Recomida.Perfil.Ubicacion' does not have a primary
             <PropertyRef Name="Provider" />
             <PropertyRef Name="ProviderUserId" />
           </Key>
-          <Property Name="Provider" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProviderUserId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="webpages_Roles">
@@ -356,38 +373,34 @@ warning 6002: The table/view 'Recomida.Perfil.Ubicacion' does not have a primary
             <PropertyRef Name="RoleId" />
           </Key>
           <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserProfile" Relationship="RecomidaCtx.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="Persona">
           <Key>
             <PropertyRef Name="UserId" />
-            <PropertyRef Name="Nombre" />
-            <PropertyRef Name="Apellido" />
-            <PropertyRef Name="FechaNacimiento" />
           </Key>
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK__Persona__UserId__3B75D760" FromRole="Persona" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile" Relationship="RecomidaCtx.FK__Persona__UserId__3B75D760" FromRole="Persona" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="Ubicacion">
           <Key>
             <PropertyRef Name="RestauranteID" />
-            <PropertyRef Name="Pais" />
-            <PropertyRef Name="Ciudad" />
-            <PropertyRef Name="Direccion" />
           </Key>
           <Property Name="RestauranteID" Type="Int32" Nullable="false" />
-          <Property Name="Pais" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Ciudad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Restaurantes" Relationship="Self.FK__Ubicacion__Resta__398D8EEE" FromRole="Ubicacion" ToRole="Restaurantes" />
+          <Property Name="Pais" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Ciudad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Latitud" Type="Double" Nullable="false" />
+          <Property Name="Longitud" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Restaurantes" Relationship="RecomidaCtx.FK__Ubicacion__Resta__398D8EEE" FromRole="Ubicacion" ToRole="Restaurantes" />
         </EntityType>
         <Association Name="FK__Restauran__TipoC__37A5467C">
-          <End Role="TipoComida" Type="Self.TipoComida" Multiplicity="1" />
-          <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="*" />
+          <End Type="RecomidaCtx.TipoComida" Role="TipoComida" Multiplicity="1" />
+          <End Type="RecomidaCtx.Restaurantes" Role="Restaurantes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TipoComida">
               <PropertyRef Name="TipoComidaID" />
@@ -398,8 +411,8 @@ warning 6002: The table/view 'Recomida.Perfil.Ubicacion' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Restauran__TipoR__36B12243">
-          <End Role="TipoRestaurante" Type="Self.TipoRestaurante" Multiplicity="1" />
-          <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="*" />
+          <End Type="RecomidaCtx.TipoRestaurante" Role="TipoRestaurante" Multiplicity="1" />
+          <End Type="RecomidaCtx.Restaurantes" Role="Restaurantes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TipoRestaurante">
               <PropertyRef Name="TipoRestauranteID" />
@@ -410,8 +423,8 @@ warning 6002: The table/view 'Recomida.Perfil.Ubicacion' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Ubicacion__Resta__398D8EEE">
-          <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="1" />
-          <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="*" />
+          <End Type="RecomidaCtx.Restaurantes" Role="Restaurantes" Multiplicity="1" />
+          <End Type="RecomidaCtx.Ubicacion" Role="Ubicacion" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Restaurantes">
               <PropertyRef Name="RestauranteID" />
@@ -422,8 +435,8 @@ warning 6002: The table/view 'Recomida.Perfil.Ubicacion' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Valoracio__Resta__3F466844">
-          <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="1" />
-          <End Role="Valoracion" Type="Self.Valoracion" Multiplicity="*" />
+          <End Type="RecomidaCtx.Restaurantes" Role="Restaurantes" Multiplicity="1" />
+          <End Type="RecomidaCtx.Valoracion" Role="Valoracion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Restaurantes">
               <PropertyRef Name="RestauranteID" />
@@ -434,8 +447,8 @@ warning 6002: The table/view 'Recomida.Perfil.Ubicacion' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Valoracio__UserI__3E52440B">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
-          <End Role="Valoracion" Type="Self.Valoracion" Multiplicity="*" />
+          <End Type="RecomidaCtx.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="RecomidaCtx.Valoracion" Role="Valoracion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
               <PropertyRef Name="UserId" />
@@ -446,8 +459,8 @@ warning 6002: The table/view 'Recomida.Perfil.Ubicacion' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Persona__UserId__3B75D760">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
-          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <End Type="RecomidaCtx.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="RecomidaCtx.Persona" Role="Persona" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
               <PropertyRef Name="UserId" />
@@ -458,50 +471,10 @@ warning 6002: The table/view 'Recomida.Perfil.Ubicacion' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Association Name="webpages_UsersInRoles">
-          <End Role="webpages_Roles" Type="Self.webpages_Roles" Multiplicity="*" />
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
+          <End Type="RecomidaCtx.webpages_Roles" Role="webpages_Roles" Multiplicity="*" />
+          <End Type="RecomidaCtx.UserProfile" Role="UserProfile" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="RecomidaModel" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Restaurantes" EntityType="Self.Restaurantes" />
-          <EntitySet Name="TipoComida" EntityType="Self.TipoComida" />
-          <EntitySet Name="TipoRestaurante" EntityType="Self.TipoRestaurante" />
-          <EntitySet Name="Valoracion" EntityType="Self.Valoracion" />
-          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" />
-          <EntitySet Name="webpages_Membership" EntityType="Self.webpages_Membership" />
-          <EntitySet Name="webpages_OAuthMembership" EntityType="Self.webpages_OAuthMembership" />
-          <EntitySet Name="webpages_Roles" EntityType="Self.webpages_Roles" />
-          <EntitySet Name="Persona" EntityType="Self.Persona" />
-          <EntitySet Name="Ubicacion" EntityType="Self.Ubicacion" />
-          <AssociationSet Name="FK__Restauran__TipoC__37A5467C" Association="Self.FK__Restauran__TipoC__37A5467C">
-            <End Role="TipoComida" EntitySet="TipoComida" />
-            <End Role="Restaurantes" EntitySet="Restaurantes" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Restauran__TipoR__36B12243" Association="Self.FK__Restauran__TipoR__36B12243">
-            <End Role="TipoRestaurante" EntitySet="TipoRestaurante" />
-            <End Role="Restaurantes" EntitySet="Restaurantes" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Ubicacion__Resta__398D8EEE" Association="Self.FK__Ubicacion__Resta__398D8EEE">
-            <End Role="Restaurantes" EntitySet="Restaurantes" />
-            <End Role="Ubicacion" EntitySet="Ubicacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Valoracio__Resta__3F466844" Association="Self.FK__Valoracio__Resta__3F466844">
-            <End Role="Restaurantes" EntitySet="Restaurantes" />
-            <End Role="Valoracion" EntitySet="Valoracion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Valoracio__UserI__3E52440B" Association="Self.FK__Valoracio__UserI__3E52440B">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="Valoracion" EntitySet="Valoracion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Persona__UserId__3B75D760" Association="Self.FK__Persona__UserId__3B75D760">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="Persona" EntitySet="Persona" />
-          </AssociationSet>
-          <AssociationSet Name="webpages_UsersInRoles" Association="Self.webpages_UsersInRoles">
-            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
-            <End Role="UserProfile" EntitySet="UserProfile" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -510,109 +483,111 @@ warning 6002: The table/view 'Recomida.Perfil.Ubicacion' does not have a primary
           <EntitySetMapping Name="Restaurantes">
             <EntityTypeMapping TypeName="RecomidaCtx.Restaurantes">
               <MappingFragment StoreEntitySet="Restaurantes">
-                <ScalarProperty Name="RestauranteID" ColumnName="RestauranteID" />
-                <ScalarProperty Name="TipoRestauranteID" ColumnName="TipoRestauranteID" />
-                <ScalarProperty Name="TipoComidaID" ColumnName="TipoComidaID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="TipoComidaID" ColumnName="TipoComidaID" />
+                <ScalarProperty Name="TipoRestauranteID" ColumnName="TipoRestauranteID" />
+                <ScalarProperty Name="RestauranteID" ColumnName="RestauranteID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TipoComida">
             <EntityTypeMapping TypeName="RecomidaCtx.TipoComida">
               <MappingFragment StoreEntitySet="TipoComida">
-                <ScalarProperty Name="TipoComidaID" ColumnName="TipoComidaID" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="TipoComidaID" ColumnName="TipoComidaID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TipoRestaurante">
             <EntityTypeMapping TypeName="RecomidaCtx.TipoRestaurante">
               <MappingFragment StoreEntitySet="TipoRestaurante">
-                <ScalarProperty Name="TipoRestauranteID" ColumnName="TipoRestauranteID" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="TipoRestauranteID" ColumnName="TipoRestauranteID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Valoracion">
             <EntityTypeMapping TypeName="RecomidaCtx.Valoracion">
               <MappingFragment StoreEntitySet="Valoracion">
-                <ScalarProperty Name="ValoracionID" ColumnName="ValoracionID" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="RestauranteID" ColumnName="RestauranteID" />
-                <ScalarProperty Name="Puntuaje" ColumnName="Puntuaje" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Puntuaje" ColumnName="Puntuaje" />
+                <ScalarProperty Name="RestauranteID" ColumnName="RestauranteID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ValoracionID" ColumnName="ValoracionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserProfile">
             <EntityTypeMapping TypeName="RecomidaCtx.UserProfile">
               <MappingFragment StoreEntitySet="UserProfile">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="webpages_Membership">
             <EntityTypeMapping TypeName="RecomidaCtx.webpages_Membership">
               <MappingFragment StoreEntitySet="webpages_Membership">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
-                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
-                <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
-                <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
-                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
-                <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
                 <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
+                <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+                <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="webpages_OAuthMembership">
             <EntityTypeMapping TypeName="RecomidaCtx.webpages_OAuthMembership">
               <MappingFragment StoreEntitySet="webpages_OAuthMembership">
-                <ScalarProperty Name="Provider" ColumnName="Provider" />
-                <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
+                <ScalarProperty Name="Provider" ColumnName="Provider" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="webpages_Roles">
             <EntityTypeMapping TypeName="RecomidaCtx.webpages_Roles">
               <MappingFragment StoreEntitySet="webpages_Roles">
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Persona">
             <EntityTypeMapping TypeName="RecomidaCtx.Persona">
               <MappingFragment StoreEntitySet="Persona">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
                 <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ubicacion">
             <EntityTypeMapping TypeName="RecomidaCtx.Ubicacion">
               <MappingFragment StoreEntitySet="Ubicacion">
-                <ScalarProperty Name="RestauranteID" ColumnName="RestauranteID" />
-                <ScalarProperty Name="Pais" ColumnName="Pais" />
-                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="RestauranteID" ColumnName="RestauranteID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="webpages_UsersInRoles" TypeName="RecomidaCtx.webpages_UsersInRoles" StoreEntitySet="webpages_UsersInRoles">
-            <EndProperty Name="webpages_Roles">
-              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-            </EndProperty>
             <EndProperty Name="UserProfile">
               <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="webpages_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

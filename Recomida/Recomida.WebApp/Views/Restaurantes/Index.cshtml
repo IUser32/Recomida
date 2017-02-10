@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Recomida.WebApp.Models.Context.Restaurantes>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th>
+            Tipo de Comida
+        </th>
+        <th>
+            Tipo de Restaurante
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoComida.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoRestaurante.Descripcion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RestauranteID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RestauranteID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RestauranteID })
+        </td>
+    </tr>
+}
+
+</table>

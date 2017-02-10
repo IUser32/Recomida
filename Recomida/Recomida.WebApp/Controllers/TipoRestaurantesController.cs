@@ -10,6 +10,7 @@ using Recomida.WebApp.Models.Context;
 
 namespace Recomida.WebApp.Controllers
 {
+    [Authorize]
     public class TipoRestaurantesController : Controller
     {
         private RecomidaModel db = new RecomidaModel();
