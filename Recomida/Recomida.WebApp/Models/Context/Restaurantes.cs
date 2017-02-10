@@ -17,7 +17,6 @@ namespace Recomida.WebApp.Models.Context
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Restaurantes()
         {
-            this.Ubicacion = new HashSet<Ubicacion>();
             this.Valoracion = new HashSet<Valoracion>();
         }
     
@@ -29,8 +28,7 @@ namespace Recomida.WebApp.Models.Context
     
         public virtual TipoComida TipoComida { get; set; }
         public virtual TipoRestaurante TipoRestaurante { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ubicacion> Ubicacion { get; set; }
+        public virtual Ubicacion Ubicacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Valoracion> Valoracion { get; set; }
     }

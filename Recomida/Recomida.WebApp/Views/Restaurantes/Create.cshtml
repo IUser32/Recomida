@@ -3,34 +3,38 @@
 @{
     ViewBag.Title = "Create";
 }
+<style>
+    #map {
+        height: 250px;
+        width: 100%;
+    }
+</style>
 
 <h2>Create</h2>
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+    <input type="hidden" name="Longitud" id="Longitud" value="" />
+    <input type="hidden" name="Latitud" id="Latitud" value="" />
     <div class="form-horizontal">
         <h4>Restaurantes</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.TipoRestauranteID, "TipoRestauranteID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TipoRestauranteID, "Tipo de Restaurante", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("TipoRestauranteID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TipoRestauranteID, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.TipoComidaID, "TipoComidaID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TipoComidaID, "Tipo de Comida", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("TipoComidaID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TipoComidaID, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -38,7 +42,6 @@
                 @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -46,10 +49,33 @@
                 @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ubicacion.Pais, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ubicacion.Pais, "Pais", "Pais", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ubicacion.Pais, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ubicacion.Ciudad, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ubicacion.Ciudad, "Ciudad", "Ciudad", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ubicacion.Ciudad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ubicacion.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ubicacion.Direccion, "Direccion", "Direccion", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ubicacion.Direccion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div id="map"></div>
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Registrar" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -58,7 +84,31 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLov3DZ5oTZUglO6OQ_-pDvIMZ_FsIJ_8&callback=initMap">
+</script>
+<script>
+        function initMap() {
+            var uluru = { lat: 18.450931761859625, lng: -69.92768883705139 };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 18,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                draggable: true,
+                position: uluru,
+                map: map
+            });
+            google.maps.event.addListener(marker, 'click', function (event) {
+                document.getElementById("Latitud").value = this.getPosition().lat();
+                document.getElementById("Longitud").value = this.getPosition().lng();
+            });
+            google.maps.event.addListener(marker, 'dragend', function (event) {
+                document.getElementById("Latitud").value = this.getPosition().lat();
+                document.getElementById("Longitud").value = this.getPosition().lng();
+            });
+            Longitud.value = uluru.lng;
+            Latitud.value = uluru.lat;
+        }
+</script>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

@@ -49,10 +49,12 @@ namespace Recomida.WebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RestauranteID,TipoRestauranteID,TipoComidaID,Nombre,Telefono")] Restaurantes restaurantes)
+        public ActionResult Create([Bind(Include = "RestauranteID,TipoRestauranteID,TipoComidaID,Nombre,Telefono,Pais,Ciudad,Direccion,Longitud,Latitud")] Restaurantes restaurantes,
+                                        [Bind(Include = "RestauranteID, Pais,Ciudad,Direccion,Longitud,Latitud")] Ubicacion ubicaciones)
         {
             if (ModelState.IsValid)
             {
+                restaurantes.Ubicacion = ubicaciones;
                 db.Restaurantes.Add(restaurantes);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -85,11 +87,13 @@ namespace Recomida.WebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RestauranteID,TipoRestauranteID,TipoComidaID,Nombre,Telefono")] Restaurantes restaurantes)
+        public ActionResult Edit([Bind(Include = "RestauranteID,TipoRestauranteID,TipoComidaID,Nombre,Telefono,Pais,Ciudad,Direccion,Longitud,Latitud")] Restaurantes restaurantes,
+                                        [Bind(Include = "RestauranteID, Pais,Ciudad,Direccion,Longitud,Latitud")] Ubicacion ubicaciones)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(restaurantes).State = EntityState.Modified;
+                db.Entry(ubicaciones).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -119,6 +123,8 @@ namespace Recomida.WebApp.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Restaurantes restaurantes = db.Restaurantes.Find(id);
+            Ubicacion ubicaciones = db.Ubicacion.Find(id);
+            db.Ubicacion.Remove(ubicaciones);
             db.Restaurantes.Remove(restaurantes);
             db.SaveChanges();
             return RedirectToAction("Index");

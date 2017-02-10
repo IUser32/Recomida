@@ -18,7 +18,6 @@ namespace Recomida.WebApp.Models.Context
         public UserProfile()
         {
             this.Valoracion = new HashSet<Valoracion>();
-            this.Persona = new HashSet<Persona>();
             this.webpages_Roles = new HashSet<webpages_Roles>();
         }
     
@@ -27,8 +26,7 @@ namespace Recomida.WebApp.Models.Context
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Valoracion> Valoracion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Persona> Persona { get; set; }
+        public virtual Persona Persona { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<webpages_Roles> webpages_Roles { get; set; }
     }

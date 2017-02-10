@@ -216,7 +216,6 @@
     <Compile Include="Controllers\RestaurantesController.cs" />
     <Compile Include="Controllers\TipoComidasController.cs" />
     <Compile Include="Controllers\TipoRestaurantesController.cs" />
-    <Compile Include="Controllers\UbicacionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -266,6 +265,7 @@
     <Compile Include="Models\Context\webpages_Roles.cs">
       <DependentUpon>Recomida.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Dto\InputDto\RestaurantesInput.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -310,6 +310,7 @@
     <Content Include="Content\bootstrap-theme.css" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
@@ -370,15 +371,14 @@
     <Content Include="Views\TipoRestaurantes\Edit.cshtml" />
     <Content Include="Views\TipoRestaurantes\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutLoginScreen.cshtml" />
-    <Content Include="Views\Ubicacion\Create.cshtml" />
-    <Content Include="Views\Ubicacion\Delete.cshtml" />
-    <Content Include="Views\Ubicacion\Details.cshtml" />
-    <Content Include="Views\Ubicacion\Edit.cshtml" />
-    <Content Include="Views\Ubicacion\Index.cshtml" />
+    <Content Include="Views\Restaurantes\Create.cshtml" />
+    <Content Include="Views\Restaurantes\Delete.cshtml" />
+    <Content Include="Views\Restaurantes\Details.cshtml" />
+    <Content Include="Views\Restaurantes\Edit.cshtml" />
+    <Content Include="Views\Restaurantes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Dto\InputDto\" />
     <Folder Include="Views\Personas\" />
   </ItemGroup>
   <ItemGroup>
