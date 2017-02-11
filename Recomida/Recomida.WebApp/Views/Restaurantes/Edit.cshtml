@@ -3,127 +3,253 @@
 @{
     ViewBag.Title = "Edit";
 }
-<style>
-    #map {
-        height: 250px;
-        width: 100%;
-    }
-</style>
+<html>
+<body>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    <div class="row">
+        .controls {
+            margin-top: 10px;
+            border: 1px solid transparent;
+            border-radius: 2px 0 0 2px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            height: 32px;
+            outline: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
 
-        <div class="col-md-10 col-md-offset-1">
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Editar Restaurante</h3>
-                </div>
-                <!-- /.box-header -->
-                <!-- form start -->
-                <input type="hidden" name="Longitud" id="Longitud" value="@Model.Ubicacion.Longitud" />
-                <input type="hidden" name="Latitud" id="Latitud" value="@Model.Ubicacion.Latitud" />
-                <div class="box-body">
-                    <div class="form-horizontal">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.RestauranteID)
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.TipoRestauranteID, "TipoRestauranteID", htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("TipoRestauranteID", null, htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.TipoRestauranteID, "", new { @class = "text-danger" })
+        #pac-input {
+            background-color: #fff;
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            margin-left: 12px;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
+            width: 300px;
+        }
+
+            #pac-input:focus {
+                border-color: #4d90fe;
+            }
+
+        .pac-container {
+            font-family: Roboto;
+        }
+
+        #type-selector {
+            color: #fff;
+            background-color: #4d90fe;
+            padding: 5px 11px 0px 11px;
+        }
+
+            #type-selector label {
+                font-family: Roboto;
+                font-size: 13px;
+                font-weight: 300;
+            }
+    </style>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+
+            <div class="col-md-10 col-md-offset-1">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Editar Restaurante</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    <input type="hidden" name="Longitud" id="Longitud" value="@Model.Ubicacion.Longitud" />
+                    <input type="hidden" name="Latitud" id="Latitud" value="@Model.Ubicacion.Latitud" />
+                    <div class="box-body">
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.RestauranteID)
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TipoRestauranteID, "TipoRestauranteID", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("TipoRestauranteID", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TipoRestauranteID, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.TipoComidaID, "TipoComidaID", htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("TipoComidaID", null, htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.TipoComidaID, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TipoComidaID, "TipoComidaID", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("TipoComidaID", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TipoComidaID, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Ubicacion.Pais, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Ubicacion.Pais, "Pais", "Pais", new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Ubicacion.Pais, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Ubicacion.Pais, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Ubicacion.Pais, "Pais", "Pais", new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Ubicacion.Pais, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Ubicacion.Ciudad, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Ubicacion.Ciudad, "Ciudad", "Ciudad", new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Ubicacion.Ciudad, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Ubicacion.Ciudad, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Ubicacion.Ciudad, "Ciudad", "Ciudad", new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Ubicacion.Ciudad, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Ubicacion.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Ubicacion.Direccion, "Direccion", "Direccion", new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Ubicacion.Direccion, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Ubicacion.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Ubicacion.Direccion, "Direccion", "Direccion", new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Ubicacion.Direccion, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div id="map"></div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Guardar" class="btn btn-success" />
+                            <div class="form-group">
+                                <div id="map"></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-success" />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                </div>
-            </div></div>
+            </div>
+        </div>
+    }
+    <div>
+        @Html.ActionLink("Volver a la lista", "Index")
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+    <input id="pac-input" class="controls" type="text"
+           placeholder="Enter a location">
+
+    <div id="type-selector" class="controls">
+        <input type="radio" name="type" id="changetype-all" checked="checked">
+        <label for="changetype-all">All</label>
+
+        <input type="radio" name="type" id="changetype-establishment">
+        <label for="changetype-establishment">Establishments</label>
+
+        <input type="radio" name="type" id="changetype-address">
+        <label for="changetype-address">Addresses</label>
+    </div>
+    <div id="map"></div>
+
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 18.4723789, lng: -69.9729824 },
+                zoom: 13
+            });
+
+            var input = (
+            document.getElementById('pac-input'));
+
+            var types = document.getElementById('type-selector');
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.bindTo('bounds', map);
+
+            var infowindow = new google.maps.InfoWindow();
+            var marker = new google.maps.Marker({
+                draggable: true,
+                map: map,
+                anchorPoint: new google.maps.Point(0, -29)
+            });
+
+            google.maps.event.addListener(marker, 'dragend', function (event) {
+                document.getElementById("Latitud").value = this.getPosition().lat();
+                document.getElementById("Longitud").value = this.getPosition().lng();
+            });
+
+            autocomplete.addListener('place_changed', function () {
+                infowindow.close();
+                marker.setVisible(false);
+                var place = autocomplete.getPlace();
+                if (!place.geometry) {
+                    window.alert("Autocomplete's returned place contains no geometry");
+                    return;
                 }
-                <div>
-                    @Html.ActionLink("Volver a la lista", "Index")
-                </div>
-                @section Scripts {
-                    @Scripts.Render("~/bundles/jqueryval")
+
+
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17);
                 }
-                <script async defer
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLov3DZ5oTZUglO6OQ_-pDvIMZ_FsIJ_8&callback=initMap">
-                </script>
-                <script>
-                    var Values = { Log: parseFloat('@Model.Ubicacion.Longitud'), Lat: parseFloat('@Model.Ubicacion.Latitud') }
-                    function initMap() {
-                        //var uluru = { lat: 18.450931761859625, lng: -69.92768883705139 };
-                        var uluru = { lat: Values.Lat, lng: Values.Log };
-                        var map = new google.maps.Map(document.getElementById('map'), {
-                            zoom: 18,
-                            center: uluru
-                        });
-                        var marker = new google.maps.Marker({
-                            draggable: true,
-                            position: uluru,
-                            map: map
-                        });
-                        google.maps.event.addListener(marker, 'click', function (event) {
-                            console.log(this.getPosition().lat());
-                            console.log(this.getPosition().lng());
-                            document.getElementById("Latitud").value = this.getPosition().lat();
-                            document.getElementById("Longitud").value = this.getPosition().lng();
-                        });
-                        google.maps.event.addListener(marker, 'dragend', function (event) {
-                            console.log(this.getPosition().lat());
-                            document.getElementById("Latitud").value = this.getPosition().lat();
-                            console.log(this.getPosition().lng());
-                            document.getElementById("Longitud").value = this.getPosition().lng();
-                        });
-                    }
-                </script>
+                marker.setIcon(({
+                    url: place.icon,
+                    size: new google.maps.Size(71, 71),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(17, 34),
+                    scaledSize: new google.maps.Size(35, 35)
+                }));
+                marker.setPosition(place.geometry.location);
+                marker.setVisible(true);
+
+                var address = '';
+                if (place.address_components) {
+                    address = [
+                      (place.address_components[0] && place.address_components[0].short_name || ''),
+                      (place.address_components[1] && place.address_components[1].short_name || ''),
+                      (place.address_components[2] && place.address_components[2].short_name || '')
+                    ].join(' ');
+                }
+
+
+                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+                infowindow.open(map, marker);
+            });
+            // Sets a listener on a radio button to change the filter type on Places
+            // Autocomplete.
+            function setupClickListener(id, types) {
+                var radioButton = document.getElementById(id);
+                radioButton.addEventListener('click', function () {
+                    autocomplete.setTypes(types);
+                });
+            }
+
+
+
+            setupClickListener('changetype-all', []);
+            setupClickListener('changetype-address', ['address']);
+            setupClickListener('changetype-establishment', ['establishment']);
+            setupClickListener('changetype-geocode', ['geocode']);
+
+
+
+        }
+
+
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLov3DZ5oTZUglO6OQ_-pDvIMZ_FsIJ_8&libraries=places&callback=initMap"
+            async defer></script>
+
+</body>
+</html>
