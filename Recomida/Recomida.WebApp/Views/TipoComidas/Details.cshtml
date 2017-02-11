@@ -1,26 +1,40 @@
 ﻿@model Recomida.WebApp.Models.Context.TipoComida
 
-@{
-    ViewBag.Title = "Details";
-}
 
-<h2>Details</h2>
+@{
+    ViewBag.Title = "Detalles";
+}
+<style>
+    #map {
+        height: 250px;
+        width: 100%;
+    }
+</style>
 
 <div>
-    <h4>TipoComida</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
+    <div class="row">
 
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-
-    </dl>
+        <div class="col-md-6 col-md-offset-3">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Detalles Tipo de Comida</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Descripcion)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Descripcion)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TipoComidaID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.TipoComidaID }) |
+    @Html.ActionLink("Volver a la lista", "Index")
 </p>

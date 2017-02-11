@@ -4,48 +4,59 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<section class="content-header">
+    <h2>Restaurantes @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn bg-olive" })</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </th>
-        <th>
-            Tipo de Comida
-        </th>
-        <th>
-            Tipo de Restaurante
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoComida.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoRestaurante.Descripcion)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RestauranteID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RestauranteID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RestauranteID })
-        </td>
-    </tr>
-}
+</section>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+            </div>
+            <div class="box-body">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Telefono)
+                        </th>
+                        <th>
+                            Tipo de Comida
+                        </th>
+                        <th>
+                            Tipo de Restaurante
+                        </th>
+                        <th></th>
+                    </tr>
 
-</table>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Telefono)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TipoComida.Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TipoRestaurante.Descripcion)
+                            </td>
+                            <td>
+                                @Html.ActionLink(" | ", "Edit", new { id = item.RestauranteID }, new { @class = "fa fa-pencil" })
+                                @Html.ActionLink(" | ", "Details", new { id = item.RestauranteID }, new { @class = "fa fa-info" })
+                                @Html.ActionLink(" . ", "Delete", new { id = item.RestauranteID }, new { @class = "fa fa-trash" })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

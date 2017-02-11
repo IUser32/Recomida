@@ -34,6 +34,14 @@
         window.appInsights = appInsights;
         appInsights.trackPageView();
     </script>
+    <style>
+        .box.box-info {
+    border-top-color: green !important;
+}
+        .box.box-primary {
+    border-top-color: green !important;
+}
+    </style>
 </head>
 <body class="hold-transition skin-red sidebar-mini">
     <div class="wrapper">
@@ -74,7 +82,6 @@
                         <ul class="treeview-menu">
                             <li class="active"> @Html.ActionLink("Gestionar Restaurante", "Index", "Restaurantes")</li>
                             <li class="active"> @Html.ActionLink("Tipos", "Index", "TipoRestaurantes")</li>
-                            <li class="active"> @Html.ActionLink("Ubicacion", "Index", "Ubicacion")</li>
 
                         </ul>
                     </li>

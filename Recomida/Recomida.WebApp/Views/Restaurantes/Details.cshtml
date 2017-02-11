@@ -1,7 +1,7 @@
 ﻿@model Recomida.WebApp.Models.Context.Restaurantes
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 <style>
     #map {
@@ -9,108 +9,115 @@
         width: 100%;
     }
 </style>
-<h2>Details</h2>
 
 <div>
-    <h4>Restaurantes</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
+    <div class="row">
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+        <div class="col-md-6 col-md-offset-3">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Detalles Restaurante</h3>
+                </div>
+                <!-- /.box-header -->
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Nombre)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Telefono)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Telefono)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoComida.Descripcion)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Telefono)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TipoComida.Descripcion)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TipoComida.Descripcion)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoRestaurante.Descripcion)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.TipoComida.Descripcion)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TipoRestaurante.Descripcion)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Ubicacion.Pais)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TipoRestaurante.Descripcion)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ubicacion.Pais)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.TipoRestaurante.Descripcion)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Ubicacion.Pais)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ubicacion.Ciudad)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Ubicacion.Pais)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ubicacion.Ciudad)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Ubicacion.Ciudad)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ubicacion.Direccion)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Ubicacion.Ciudad)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ubicacion.Direccion)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Ubicacion.Direccion)
+                    </dt>
 
-        <dt>
-            Ubicacion
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Ubicacion.Direccion)
+                    </dd>
 
-        <dd>
-            <div id="map"></div>
-        </dd>
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RestauranteID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLov3DZ5oTZUglO6OQ_-pDvIMZ_FsIJ_8&callback=initMap">
-</script>
-<script>
-    var Values = { Log: parseFloat('@Model.Ubicacion.Longitud'), Lat: parseFloat('@Model.Ubicacion.Latitud') }
-    function initMap() {
-        //var uluru = { lat: 18.450931761859625, lng: -69.92768883705139 };
-        var uluru = { lat: Values.Lat, lng: Values.Log };
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 18,
-            center: uluru
-        });
-        var marker = new google.maps.Marker({
-            draggable: true,
-            position: uluru,
-            map: map
-        });
-        google.maps.event.addListener(marker, 'click', function (event) {
-            console.log(this.getPosition().lat());
-            console.log(this.getPosition().lng());
-            document.getElementById("Latitud").value = this.getPosition().lat();
-            document.getElementById("Longitud").value = this.getPosition().lng();
-        });
-        google.maps.event.addListener(marker, 'dragend', function (event) {
-            console.log(this.getPosition().lat());
-            document.getElementById("Latitud").value = this.getPosition().lat();
-            console.log(this.getPosition().lng());
-            document.getElementById("Longitud").value = this.getPosition().lng();
-        });
-    }
-</script>
+                    <dt>
+                        Ubicacion
+                    </dt>
+
+                    <dd>
+                        <div id="map"></div>
+                    </dd>
+                </dl>
+            </div>
+            </div></div></div>
+            <p>
+                @Html.ActionLink("Editar", "Edit", new { id = Model.RestauranteID }) |
+                @Html.ActionLink("Volver a la lista", "Index")
+            </p>
+            
+            <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLov3DZ5oTZUglO6OQ_-pDvIMZ_FsIJ_8&callback=initMap">
+            </script>
+            <script>
+                var Values = { Log: parseFloat('@Model.Ubicacion.Longitud'), Lat: parseFloat('@Model.Ubicacion.Latitud') }
+                function initMap() {
+                    //var uluru = { lat: 18.450931761859625, lng: -69.92768883705139 };
+                    var uluru = { lat: Values.Lat, lng: Values.Log };
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 18,
+                        center: uluru
+                    });
+                    var marker = new google.maps.Marker({
+                        draggable: true,
+                        position: uluru,
+                        map: map
+                    });
+                    google.maps.event.addListener(marker, 'click', function (event) {
+                        console.log(this.getPosition().lat());
+                        console.log(this.getPosition().lng());
+                        document.getElementById("Latitud").value = this.getPosition().lat();
+                        document.getElementById("Longitud").value = this.getPosition().lng();
+                    });
+                    google.maps.event.addListener(marker, 'dragend', function (event) {
+                        console.log(this.getPosition().lat());
+                        document.getElementById("Latitud").value = this.getPosition().lat();
+                        console.log(this.getPosition().lng());
+                        document.getElementById("Longitud").value = this.getPosition().lng();
+                    });
+                }
+            </script>
