@@ -216,6 +216,7 @@
     <Compile Include="Controllers\RestaurantesController.cs" />
     <Compile Include="Controllers\TipoComidasController.cs" />
     <Compile Include="Controllers\TipoRestaurantesController.cs" />
+    <Compile Include="Controllers\ValoracionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -387,6 +388,11 @@
     <Content Include="Views\Restaurantes\Details.cshtml" />
     <Content Include="Views\Restaurantes\Edit.cshtml" />
     <Content Include="Views\Restaurantes\Index.cshtml" />
+    <Content Include="Views\Valoracions\Create.cshtml" />
+    <Content Include="Views\Valoracions\Delete.cshtml" />
+    <Content Include="Views\Valoracions\Details.cshtml" />
+    <Content Include="Views\Valoracions\Edit.cshtml" />
+    <Content Include="Views\Valoracions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

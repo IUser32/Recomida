@@ -1,0 +1,67 @@
+﻿@model Recomida.WebApp.Models.Context.Valoracion
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="row">
+
+    <div class="col-md-6 col-md-offset-3">
+        <div class="box box-info">
+            <div class="box-header with-border text-center">
+                <img src="~/Imagenes/Delete.png" style="max-width: 50%" />
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <div class="box-body">
+                <div>
+                    <h3>Seguro que quiere eliminar esta valoracion?</h3>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Puntuaje)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Puntuaje)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Fecha)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Fecha)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Restaurantes.Nombre)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Restaurantes.Nombre)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UserProfile.Username)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.UserProfile.Username)
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Delete" class="btn btn-default" /> |
+                            @Html.ActionLink("Back to List", "Index")
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

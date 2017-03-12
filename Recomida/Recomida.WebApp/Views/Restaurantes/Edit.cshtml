@@ -22,7 +22,7 @@
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
 
-        #pac-input {
+        #Direccion {
             background-color: #fff;
             font-family: Roboto;
             font-size: 15px;
@@ -33,7 +33,7 @@
             width: 300px;
         }
 
-            #pac-input:focus {
+            #Direccion:focus {
                 border-color: #4d90fe;
             }
 
@@ -115,10 +115,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Ubicacion.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Ubicacion.Direccion, "Direccion", "Direccion", new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Ubicacion.Direccion, "", new { @class = "text-danger" })
+                                 <div class="col-md-10">
+                                   @Html.EditorFor(model => model.Ubicacion.Direccion, "Direccion", "Direccion", new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Ubicacion.Direccion, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group">
@@ -142,9 +141,11 @@
         @Scripts.Render("~/bundles/jqueryval")
     }
 
-    <input id="pac-input" class="controls" type="text"
-           placeholder="Enter a location">
-
+    <input id="Direccion" class="controls" type="text"
+           placeholder="Enter a location" name="Direccion">
+    @Html.LabelFor(model => model.Ubicacion.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.EditorFor(model => model.Ubicacion.Direccion, "Direccion", "Direccion", new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(model => model.Ubicacion.Direccion, "", new { @class = "text-danger" })
     <div id="type-selector" class="controls">
         <input type="radio" name="type" id="changetype-all" checked="checked">
         <label for="changetype-all">All</label>
@@ -165,7 +166,7 @@
             });
 
             var input = (
-            document.getElementById('pac-input'));
+            document.getElementById('Direccion'));
 
             var types = document.getElementById('type-selector');
             map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
